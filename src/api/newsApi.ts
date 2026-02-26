@@ -6,6 +6,11 @@ import {pagingSchema, createNewsSchema} from './zodTest.js'
 
 export const app = new Hono();
 
+app.onError((err, c) => {
+    console.error(err)
+    return c.json({error: 'Internal server error'}, 500)
+})
+
 
 // tekur við offset og limit querystring breytum sem stýra paging
 // ef valid annars eitthvað deafault

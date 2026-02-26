@@ -6,6 +6,11 @@ import {pagingSchema, createAuthorSchema} from './zodTest.js'
 
 export const app = new Hono();
 
+app.onError((err, c) => {
+    console.error(err)
+    return c.json({error: 'Internal server error'}, 500)
+})
+
 
 // tekur við offset og limit querystring breytum sem stýra paging
 // ef valid annars eitthvað deafault
@@ -77,7 +82,7 @@ app.post('/', zValidator('query', createAuthorSchema), async (c) => {
 
 
 
-app.put('/',zValidator('query', createAuthorSchema), async (c) => {
+app.put('/:id',zValidator('query', createAuthorSchema), async (c) => {
     const id = c.req.param('id')
 
     const name = c.req.valid('query').name
