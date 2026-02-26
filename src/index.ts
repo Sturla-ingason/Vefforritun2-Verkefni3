@@ -17,13 +17,42 @@ app.get('/', (c) => {
         description: 'get all authors, paginated'
       },
       {
-        method: 'post'
+        method: 'get/:id',
+        description: 'gets a user from their user id'
       },
       {
-        method: 'put'
+        method: 'post',
+        description: 'adds a new user to the database. Takes inn a username and email address'
       },
       {
-        method: 'delete'
+        method: 'put',
+        description: 'updates a user from their user id'
+      },
+      {
+        method: 'delete',
+        description: 'deletes a user with the given user id'
+      }
+    ],
+    '/news' : [
+      {
+        method: 'get',
+        description: 'gets all the news, paginated'
+      },
+      {
+        method: 'get/:slug',
+        description: 'gets the news artical from the name inn a slug form'
+      },
+      {
+        method: 'post',
+        description: 'adds another news artical from the createNewsArticalSchema found inn zodTest.ts'
+      },
+      {
+        method: 'put',
+        description: 'updates news artical according to the new parameters given'
+      },
+      {
+        method: 'delete',
+        description: 'deletes a news artical according to the news artical id'
       }
     ]
   })
